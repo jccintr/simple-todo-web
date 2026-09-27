@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 import { HiOutlinePencil, HiOutlineTrash, HiOutlineChevronRight } from 'react-icons/hi';
+import { Badge } from "flowbite-react";
 
 export default function CategoryCard({ category, onEdit, onDelete }) {
   return (
     <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface px-4 py-3.5 transition-colors hover:border-primary/40">
-      <Link to={`/categorias/${category._id}`} className="min-w-0 flex-1">
-        <span className="truncate text-sm font-semibold text-text">{category.name}</span>
-      </Link>
-
+      <div className="flex flex-row min-w-0 items-center gap-3">
+          <Link to={`/categorias/${category._id}`} className="min-w-0 flex-1">
+             <span className="truncate text-sm font-semibold text-text">{category.name}</span>
+          </Link>
+          {category.pendingCount > 0 && <div className="shrink-0 rounded-full bg-danger px-2.5 py-1 text-xs font-semibold text-white">{category.pendingCount}</div>}
+      </div>
       <div className="flex shrink-0 items-center gap-1">
         <button
           type="button"
